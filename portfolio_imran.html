@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Imran Shaik — Portfolio</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:Georgia,sans-serif;background:#0d0d0d;color:#fff;}
+
+    /* SPLASH */
+    #splash{
+      position:fixed;inset:0;background:#0d0d0d;display:flex;align-items:center;
+      justify-content:center;z-index:100;
+      animation:splashOut 0.7s ease-in-out 2s forwards;
+    }
+    .splash-inner{text-align:center;}
+    .splash-name{display:flex;justify-content:center;overflow:hidden;}
+    .nc{
+      font-family:Georgia,serif;font-size:64px;color:#fff;letter-spacing:6px;
+      opacity:0;transform:translateY(30px);
+      animation:charUp 0.45s cubic-bezier(.22,.68,0,1.2) forwards;
+    }
+    .nc.sp{width:24px;}
+    .splash-line{width:0;height:1px;background:#fff;margin:22px auto 0;animation:lineGrow 0.5s ease-out 1s forwards;}
+    .splash-role{font-family:sans-serif;font-size:11px;letter-spacing:4px;color:#888;text-transform:uppercase;opacity:0;margin-top:18px;animation:fadeUp 0.5s ease 1.3s forwards;}
+    @keyframes charUp{to{opacity:1;transform:translateY(0);}}
+    @keyframes lineGrow{to{width:70px;}}
+    @keyframes fadeUp{to{opacity:1;}}
+    @keyframes splashOut{to{opacity:0;pointer-events:none;}}
+
+    /* PORTFOLIO */
+    #portfolio{opacity:0;animation:pIn 0.6s ease 2.5s forwards;}
+    @keyframes pIn{to{opacity:1;}}
+
+    section{padding:60px 48px;}
+
+    /* HERO */
+    .hero{padding:100px 48px 70px;border-bottom:0.5px solid rgba(255,255,255,0.08);}
+    .hero-name{font-family:Georgia,serif;font-size:64px;color:#fff;font-weight:400;line-height:1.1;margin-bottom:20px;}
+    .hero-name span{color:rgba(255,255,255,0.25);}
+    .hero-role{font-family:sans-serif;font-size:17px;color:rgba(255,255,255,0.55);max-width:520px;line-height:1.75;margin-bottom:36px;}
+    .hero-links{display:flex;gap:12px;flex-wrap:wrap;}
+    .hero-link{
+      font-family:sans-serif;font-size:11px;letter-spacing:1.5px;
+      color:rgba(255,255,255,0.6);border:0.5px solid rgba(255,255,255,0.2);
+      padding:9px 18px;border-radius:20px;text-decoration:none;transition:all 0.2s;
+    }
+    .hero-link:hover{color:#fff;border-color:rgba(255,255,255,0.7);}
+
+    /* SECTION LABEL */
+    .section-label{
+      font-family:sans-serif;font-size:10px;letter-spacing:3px;
+      color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:32px;
+    }
+
+    /* EXPERIENCE */
+    .exp-card{
+      border:0.5px solid rgba(255,255,255,0.1);border-radius:12px;
+      padding:30px;margin-bottom:16px;transition:border-color 0.2s;
+    }
+    .exp-card:hover{border-color:rgba(255,255,255,0.28);}
+    .exp-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
+    .exp-title{font-family:sans-serif;font-size:15px;font-weight:600;color:#fff;}
+    .exp-meta{font-family:sans-serif;font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.5px;}
+    .exp-company{font-family:sans-serif;font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:16px;letter-spacing:1px;}
+    .exp-desc{font-family:sans-serif;font-size:13px;color:rgba(255,255,255,0.55);line-height:1.8;list-style:none;}
+    .exp-desc li{margin-bottom:10px;padding-left:16px;position:relative;}
+    .exp-desc li::before{content:'–';position:absolute;left:0;color:rgba(255,255,255,0.2);}
+
+    /* PROJECTS */
+    .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
+    .proj-card{
+      border:0.5px solid rgba(255,255,255,0.1);border-radius:12px;
+      padding:30px;transition:border-color 0.2s;
+    }
+    .proj-card:hover{border-color:rgba(255,255,255,0.32);}
+    .proj-num{font-family:sans-serif;font-size:10px;color:rgba(255,255,255,0.22);letter-spacing:2px;margin-bottom:18px;}
+    .proj-name{font-family:Georgia,serif;font-size:18px;color:#fff;margin-bottom:12px;}
+    .proj-desc{font-family:sans-serif;font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:22px;}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px;}
+    .tag{
+      font-family:sans-serif;font-size:10px;letter-spacing:1px;
+      color:rgba(255,255,255,0.45);border:0.5px solid rgba(255,255,255,0.14);
+      padding:4px 11px;border-radius:12px;
+    }
+    .proj-link{font-family:sans-serif;font-size:11px;color:rgba(255,255,255,0.38);text-decoration:none;letter-spacing:1px;transition:color 0.2s;}
+    .proj-link:hover{color:#fff;}
+
+    /* SKILLS */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;}
+    .skill-group{border:0.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;}
+    .skill-group-name{font-family:sans-serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.28);text-transform:uppercase;margin-bottom:16px;}
+    .skill-pills{display:flex;flex-wrap:wrap;gap:7px;}
+    .skill-pill{font-family:sans-serif;font-size:12px;color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.06);padding:6px 13px;border-radius:12px;}
+
+    /* EDUCATION */
+    .edu-row{
+      display:flex;justify-content:space-between;align-items:flex-start;
+      padding:26px;border:0.5px solid rgba(255,255,255,0.1);border-radius:12px;
+      flex-wrap:wrap;gap:14px;
+    }
+    .edu-school{font-family:sans-serif;font-size:15px;color:#fff;font-weight:600;margin-bottom:8px;}
+    .edu-degree{font-family:sans-serif;font-size:13px;color:rgba(255,255,255,0.48);}
+    .edu-right{text-align:right;}
+    .edu-year{font-family:sans-serif;font-size:11px;color:rgba(255,255,255,0.32);letter-spacing:1px;}
+    .edu-gpa{font-family:Georgia,serif;font-size:22px;color:#fff;margin-top:6px;}
+
+    /* CERTIFICATIONS */
+    .cert-box{border:0.5px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;}
+    .cert-row{display:flex;justify-content:space-between;align-items:center;padding:18px 26px;border-bottom:0.5px solid rgba(255,255,255,0.06);}
+    .cert-row:last-child{border-bottom:none;}
+    .cert-name{font-family:sans-serif;font-size:13px;color:rgba(255,255,255,0.7);}
+    .cert-source{font-family:sans-serif;font-size:11px;color:rgba(255,255,255,0.28);letter-spacing:1px;}
+
+    /* CONTACT */
+    .contact-section{
+      border-top:0.5px solid rgba(255,255,255,0.08);padding:70px 48px;
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px;
+    }
+    .contact-text{font-family:Georgia,serif;font-size:32px;color:#fff;font-weight:400;max-width:360px;line-height:1.35;}
+    .contact-links{display:flex;flex-direction:column;gap:14px;align-items:flex-end;}
+    .clink{font-family:sans-serif;font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:1px;transition:color 0.2s;}
+    .clink:hover{color:#fff;}
+
+    /* FOOTER */
+    .footer{
+      padding:22px 48px;border-top:0.5px solid rgba(255,255,255,0.06);
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .footer-name{font-family:sans-serif;font-size:11px;color:rgba(255,255,255,0.18);letter-spacing:2px;}
+    .footer-loc{font-family:sans-serif;font-size:11px;color:rgba(255,255,255,0.18);}
+
+    .divider{border:none;border-top:0.5px solid rgba(255,255,255,0.08);margin:0 48px;}
+  </style>
+</head>
+<body>
+
+  <!-- SPLASH -->
+  <div id="splash">
+    <div class="splash-inner">
+      <div class="splash-name" id="nc"></div>
+      <div class="splash-line"></div>
+      <div class="splash-role">Full-Stack Developer</div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <div id="portfolio">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-name">Imran<br><span>Shaik</span></div>
+      <div class="hero-role">Final-year Computer Science student passionate about full-stack development, software quality, and building scalable, user-focused solutions.</div>
+      <div class="hero-links">
+        <a class="hero-link" href="https://www.linkedin.com/in/imran-shaik-612609248/" target="_blank">LinkedIn</a>
+        <a class="hero-link" href="https://github.com/Immu01" target="_blank">GitHub</a>
+        <a class="hero-link" href="https://leetcode.com/u/Imran_01/" target="_blank">LeetCode</a>
+        <a class="hero-link" href="https://codeforces.com/profile/Imran_01" target="_blank">Codeforces</a>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <div class="section-label">Experience</div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div class="exp-title">Software Engineering Intern</div>
+          <div class="exp-meta">Nov 2025 – Jan 2026</div>
+        </div>
+        <div class="exp-company">Infosys Springboard Internship 6.0</div>
+        <ul class="exp-desc">
+          <li>Selected for the competitive Infosys Springboard Internship 6.0, engaging in corporate simulation focused on digital transformation with Agile methodologies.</li>
+          <li>Designed and developed <strong style="color:rgba(255,255,255,0.85);">ICRA</strong> — a full-stack insurance platform integrating secure business logic with a modern, scalable user experience.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- PROJECTS -->
+    <section>
+      <div class="section-label">Projects</div>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-num">01</div>
+          <div class="proj-name">SecureLSB</div>
+          <div class="proj-desc">A secure web communication platform that hides encrypted messages inside images using LSB steganography and AES-256 encryption.</div>
+          <div class="proj-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">AES-256</span>
+          </div>
+          <a class="proj-link" href="http://immu01.github.io/SecureLSB/dashboard.html" target="_blank">View live →</a>
+        </div>
+        <div class="proj-card">
+          <div class="proj-num">02</div>
+          <div class="proj-name">ICRA</div>
+          <div class="proj-desc">Insurance Comparison, Recommendation & Claim Assistant — full-stack platform with algorithmic risk profiling, policy management, and JWT-secured APIs.</div>
+          <div class="proj-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Postman</span>
+            <span class="tag">Pydantic</span>
+            <span class="tag">JWT</span>
+            <span class="tag">Full-Stack</span>
+          </div>
+          <a class="proj-link" href="https://github.com/Immu01/ICRA" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- SKILLS -->
+    <section>
+      <div class="section-label">Skills</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-name">Languages</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">HTML</span>
+            <span class="skill-pill">CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Database & Tools</div>
+          <div class="skill-pills">
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">SQLite</span>
+            <span class="skill-pill">Excel</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Dev & Version Control</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill">GitHub</span>
+            <span class="skill-pill">VS Code</span>
+            <span class="skill-pill">Postman</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Fundamentals</div>
+          <div class="skill-pills">
+            <span class="skill-pill">DSA</span>
+            <span class="skill-pill">OOP</span>
+            <span class="skill-pill">Design Patterns</span>
+            <span class="skill-pill">Agile</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- EDUCATION -->
+    <section>
+      <div class="section-label">Education</div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-school">Saveetha Institute of Medical and Technical Sciences</div>
+          <div class="edu-degree">B.E. in Computer Science · 2022 – 2026</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-year">CGPA</div>
+          <div class="edu-gpa">8.2</div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- CERTIFICATIONS -->
+    <section style="padding-bottom:0;">
+      <div class="section-label">Certifications</div>
+      <div class="cert-box">
+        <div class="cert-row">
+          <div class="cert-name">Python</div>
+          <div class="cert-source">HackerRank</div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-name">MySQL</div>
+          <div class="cert-source">HackerRank</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <div class="contact-section">
+      <div class="contact-text">Let's build something great together.</div>
+      <div class="contact-links">
+        <a class="clink" href="mailto:ski.imran89immu@gmail.com">ski.imran89immu@gmail.com</a>
+        <a class="clink" href="tel:+917993784670">+91 79937 84670</a>
+        <span class="clink">Chennai, India</span>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-name">Imran Shaik · 2026</div>
+      <div class="footer-loc">Chennai, India</div>
+    </div>
+
+  </div>
+
+  <script>
+    const name = "Imran Shaik";
+    const container = document.getElementById('nc');
+    name.split('').forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.className = ch === ' ' ? 'nc sp' : 'nc';
+      span.textContent = ch === ' ' ? '' : ch;
+      span.style.animationDelay = (0.04 * i) + 's';
+      container.appendChild(span);
+    });
+  </script>
+
+</body>
+</html>
